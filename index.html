@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Thrive Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: one phone-width column, area tabs under the header. The three areas are the spine: each has its own page of innovations and people; Everyone is the lobby. Look carried over from Connect v1 to v3. */
+:root{
+  --bg:#eef2f0; --surface:#ffffff; --surface-2:#f5f8f6; --fg:#15211e; --muted:#56655f; --line:#d3ddd8;
+  --accent:#0d6b5b; --accent-ink:#ffffff; --accent-soft:#dcece7;
+  --band:#0d6b5b; --band-ink:#f2f6f4;
+  --ec:#8a5a00; --ec-soft:#f6ead2; --k12:#2a5aa0; --k12-soft:#dfe8f6; --dis:#7a3f86; --dis-soft:#efe1f2;
+  --warn:#8a5a00; --love:#b3364b; --love-soft:#f8e1e5;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Helvetica Neue",Arial,system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1412; --surface:#151f1c; --surface-2:#1a2622; --fg:#e4ece9; --muted:#9aaba5; --line:#283632;
+  --accent:#5cc4ae; --accent-ink:#0d1412; --accent-soft:#1d3530;
+  --band:#15211e; --band-ink:#f2f6f4;
+  --ec:#e9b34f; --ec-soft:#2e2615; --k12:#86aee9; --k12-soft:#18253a; --dis:#cf9fd8; --dis-soft:#2b1d2e;
+  --warn:#e9b34f; --love:#f08a9b; --love-soft:#3a1d23; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1412; --surface:#151f1c; --surface-2:#1a2622; --fg:#e4ece9; --muted:#9aaba5; --line:#283632;
+  --accent:#5cc4ae; --accent-ink:#0d1412; --accent-soft:#1d3530;
+  --band:#15211e; --band-ink:#f2f6f4;
+  --ec:#e9b34f; --ec-soft:#2e2615; --k12:#86aee9; --k12-soft:#18253a; --dis:#cf9fd8; --dis-soft:#2b1d2e;
+  --warn:#e9b34f; --love:#f08a9b; --love-soft:#3a1d23; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--band)}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--band);color:var(--band-ink)}
+header.top .wrap{padding-block:12px;display:flex;align-items:center;gap:12px}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--band-ink);display:grid;place-items:center;flex:none}
+.brand{min-width:0;flex:1}
+.brand h1{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+.brand p{font-size:.8rem;opacity:.8}
+.days{font-family:var(--display);font-weight:800;border:1.5px solid currentColor;border-radius:999px;padding:4px 12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+main{padding-block:16px 56px;display:grid;gap:22px}
+section{display:grid;gap:12px}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.muted{color:var(--muted)} .small{font-size:.85rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px}
+.subhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.subhead h2{font-size:1.25rem;font-weight:800}
+
+.hero{background:var(--accent-soft);border-radius:var(--r);padding:18px;display:grid;gap:12px}
+.hero h2{font-size:1.6rem;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-family:var(--display);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted)}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 16px;font-weight:700;font-size:.9rem}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:default}
+.wave{border:1.5px solid var(--accent);color:var(--accent);background:transparent;border-radius:999px;padding:6px 14px;font-weight:700;font-size:.85rem;white-space:nowrap}
+.wave[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:700;font-size:.85rem;text-decoration:underline;text-underline-offset:3px}
+
+label.f{display:grid;gap:4px;font-weight:700;font-size:.9rem}
+label.f span{font-weight:400;color:var(--muted);font-size:.8rem}
+label.f input,label.f textarea,label.f select{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-weight:400;width:100%}
+textarea{resize:vertical;min-height:64px}
+.formerr{color:var(--warn);font-size:.85rem;font-weight:700}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+.qtabs{display:flex;gap:6px;flex-wrap:wrap}
+.qtabs button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-weight:700;font-size:.8rem}
+.qtabs button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.qtabs button:disabled{opacity:.55;cursor:default;border-style:dashed}
+.question{font-family:var(--display);font-weight:800;font-size:1.35rem;line-height:1.2;text-wrap:balance}
+.answers{display:grid;gap:8px}
+.answer{background:var(--surface-2);border-radius:10px;padding:8px 10px}
+.answer p{font-size:.95rem;overflow-wrap:anywhere}
+.answer span{font-size:.78rem;color:var(--muted)}
+
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.82rem}
+.filters button[aria-pressed="true"]{border-color:var(--fg);background:var(--fg);color:var(--bg)}
+.person{display:grid;gap:10px}
+.person .head{display:flex;gap:12px;align-items:flex-start}
+.avatar{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;font-size:.85rem;background:var(--accent-soft);color:var(--accent)}
+.avatar.ec{background:var(--ec-soft);color:var(--ec)} .avatar.k12{background:var(--k12-soft);color:var(--k12)} .avatar.dis{background:var(--dis-soft);color:var(--dis)}
+.who{min-width:0;flex:1}
+.who b{display:block;overflow-wrap:anywhere}
+.who span{font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}
+.kv{display:grid;gap:8px;margin:0}
+.kv div{display:grid;gap:1px}
+.kv dt{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.72rem;font-weight:700;letter-spacing:.03em;border-radius:999px;padding:2px 9px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.chip.ec{background:var(--ec-soft);color:var(--ec);border-color:transparent}
+.chip.k12{background:var(--k12-soft);color:var(--k12);border-color:transparent}
+.chip.dis{background:var(--dis-soft);color:var(--dis);border-color:transparent}
+.chip.match{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chip.waved{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.chip.example{border-style:dashed;color:var(--warn);border-color:var(--warn);background:transparent}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.empty{border:1px dashed var(--line);border-radius:var(--r);padding:16px;color:var(--muted);font-size:.92rem}
+.matchrow{display:flex;gap:12px;align-items:center}
+.matchrow p{font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:.9rem;max-width:calc(100% - 32px);text-align:center}
+@media (max-width:380px){.hero h2{font-size:1.4rem}}
+
+nav.areas{border-top:1px solid color-mix(in srgb,var(--band-ink) 18%,transparent)}
+nav.areas .wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding-block:6px}
+nav.areas button{border:0;background:transparent;border-radius:10px;padding:8px 2px;font-size:.74rem;font-weight:700;line-height:1.15;color:var(--band-ink);opacity:.8;min-width:0}
+nav.areas button[aria-current="page"]{opacity:1;background:var(--band-ink);color:var(--band)}
+.tiles{display:grid;gap:10px}
+.tile{display:grid;gap:6px;text-align:left;border:0;border-radius:var(--r);padding:16px;width:100%}
+.tile.ec{background:var(--ec-soft)} .tile.k12{background:var(--k12-soft)} .tile.dis{background:var(--dis-soft)}
+.tile h3{font-size:1.3rem;font-weight:800}
+.tile.ec h3,.areahead.ec h2{color:var(--ec)} .tile.k12 h3,.areahead.k12 h2{color:var(--k12)} .tile.dis h3,.areahead.dis h2{color:var(--dis)}
+.tile .nums{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;font-weight:700;font-variant-numeric:tabular-nums}
+.tile .top{font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}
+.tile .go{font-weight:700;font-size:.85rem;text-decoration:underline;text-underline-offset:3px}
+.areahead{border-radius:var(--r);padding:18px;display:grid;gap:8px}
+.areahead.ec{background:var(--ec-soft)} .areahead.k12{background:var(--k12-soft)} .areahead.dis{background:var(--dis-soft)}
+.areahead h2{font-size:1.6rem;font-weight:800}
+.inn{display:grid;gap:10px}
+.inn h3{font-size:1.08rem;font-weight:700;overflow-wrap:anywhere}
+.inn p{overflow-wrap:anywhere}
+.inn a{color:var(--accent);font-weight:700;font-size:.85rem;overflow-wrap:anywhere}
+.chip.fellow{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.love{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--love);color:var(--love);background:transparent;border-radius:999px;padding:6px 12px;font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.love svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.love[aria-pressed="true"]{background:var(--love-soft)}
+.love[aria-pressed="true"] svg{fill:currentColor}
+.bridge{display:grid;gap:10px}
+.bridge .card{gap:8px}
+.rowbtn{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;text-align:left;width:100%;border:0;border-radius:10px;padding:10px 12px;font-weight:700}
+.rowbtn.ec{background:var(--ec-soft);color:var(--ec)} .rowbtn.k12{background:var(--k12-soft);color:var(--k12)} .rowbtn.dis{background:var(--dis-soft);color:var(--dis)}
+.rowbtn span{font-weight:400;font-size:.85rem;color:var(--fg);font-variant-numeric:tabular-nums}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.checks label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-size:.82rem;font-weight:700;background:var(--surface-2);cursor:pointer}
+.checks input{accent-color:var(--accent);margin:0}
+
+.areahead .btn{min-height:44px}
+#pSec,#iSec{scroll-margin-top:calc(120px + env(safe-area-inset-top,0px))}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px}
+.qcard .qtext{font-family:var(--display);font-weight:800;font-size:1.15rem;line-height:1.25;text-wrap:balance}
+.gg b{font-family:var(--display)}
+.listrow{display:grid;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
+.listrow:first-child{border-top:0;padding-top:0}
+.listrow p{font-size:.9rem;overflow-wrap:anywhere}
+.learn{border:1.5px solid var(--accent);color:var(--accent);background:transparent;border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem}
+.learn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* Thrive Center look: Georgetown blue, white pages, serif headings, the yellow thread from the site banner */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef1f5; --fg:#16202e; --muted:#566170; --line:#d4dae3;
+  --accent:#041e42; --accent-ink:#ffffff; --accent-soft:#e2e8f1;
+  --band:#041e42; --band-ink:#ffffff; --thread:#e3b23c;
+  --ec:#7d5200; --ec-soft:#f7ecd0; --k12:#1f5a99; --k12-soft:#dde9f7; --dis:#6c3a7c; --dis-soft:#eee2f2;
+  --warn:#8a4b00;
+  --display:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Helvetica Neue",Arial,system-ui,sans-serif;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a111d; --surface:#111b2b; --surface-2:#18243a; --fg:#e6ebf2; --muted:#9eabbc; --line:#2a3850;
+  --accent:#a9c8f5; --accent-ink:#0a111d; --accent-soft:#1c2b45;
+  --band:#041e42; --band-ink:#ffffff; --thread:#e3b23c;
+  --ec:#e8b85a; --ec-soft:#30260f; --k12:#8fb8ee; --k12-soft:#16263d; --dis:#d0a3da; --dis-soft:#2b1c30;
+  --warn:#e8b85a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a111d; --surface:#111b2b; --surface-2:#18243a; --fg:#e6ebf2; --muted:#9eabbc; --line:#2a3850;
+  --accent:#a9c8f5; --accent-ink:#0a111d; --accent-soft:#1c2b45;
+  --band:#041e42; --band-ink:#ffffff; --thread:#e3b23c;
+  --ec:#e8b85a; --ec-soft:#30260f; --k12:#8fb8ee; --k12-soft:#16263d; --dis:#d0a3da; --dis-soft:#2b1c30;
+  --warn:#e8b85a; color-scheme:dark}
+header.top{border-bottom:4px solid var(--thread)}
+h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
+.brand h1{font-weight:700}
+.hero{background:var(--surface);border:1px solid var(--line)}
+.btn,.wave,.learn,.chip,.filters button,.checks label,.days{border-radius:4px}
+.avatar{border-radius:50%}
+.logo{border-radius:4px}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="7" cy="8" r="3" fill="#041e42"/><circle cx="17" cy="8" r="3" fill="#041e42"/><circle cx="12" cy="16.5" r="3" fill="#041e42"/><path d="M7 8 L17 8 L12 16.5 Z" fill="none" stroke="#041e42" stroke-width="1.6"/></svg></div>
+    <div class="brand"><h1>Thrive Together</h1><p>Dec 9 · The Square, Washington DC</p></div>
+    <span class="days" id="days"></span>
+  </div>
+  <nav class="areas" aria-label="Sections"><div class="wrap" id="nav"></div></nav>
+</header>
+
+<main class="wrap">
+  <div id="vHome" style="display:grid;gap:22px">
+    <section class="hero" aria-labelledby="heroH">
+      <h2 id="heroH">Find your people. Build together.</h2>
+      <p id="heroP">Early childhood, K-12 mental health and disability share a room on December 9. Start with one Give and one Get, then see what we can build together.</p>
+      <p class="small" id="heroStats" style="font-weight:700"></p>
+    </section>
+    <section aria-labelledby="meH">
+      <div class="subhead"><h2 id="meH">Your Give and Get</h2></div>
+      <div id="me"></div>
+    </section>
+    <section id="forYouSec" aria-labelledby="fyH">
+      <div class="subhead"><h2 id="fyH">For you</h2></div>
+      <div id="forYou" style="display:grid;gap:12px"></div>
+    </section>
+    <section aria-labelledby="tilesH">
+      <div class="subhead"><h2 id="tilesH">Areas</h2></div>
+      <div class="tiles" id="tiles"></div>
+    </section>
+  </div>
+
+  <div id="vArea" style="display:grid;gap:22px" hidden>
+    <div id="areaHead"></div>
+    <section aria-labelledby="qH">
+      <div class="subhead"><h2 id="qH">The leads’ key questions</h2></div>
+      <p class="muted small" id="qSub"></p>
+      <div id="questions" style="display:grid;gap:12px"></div>
+    </section>
+    <section id="pSec" aria-labelledby="pH">
+      <div class="subhead"><h2 id="pH">People</h2><span class="small muted" id="pCount"></span></div>
+      <div id="people" style="display:grid;gap:12px"></div>
+    </section>
+    <section id="iSec" aria-labelledby="aiH">
+      <div class="subhead"><h2 id="aiH">Innovations</h2><button class="linkbtn" data-go="inn">See all, or share one</button></div>
+      <div id="areaInn" style="display:grid;gap:12px"></div>
+    </section>
+  </div>
+
+  <div id="vInn" style="display:grid;gap:18px" hidden>
+    <section aria-labelledby="innH">
+      <div class="subhead"><h2 id="innH">Innovations</h2><button class="linkbtn" id="shareToggle">Share an innovation</button></div>
+      <p class="muted small">This fall’s Thrive Fellows and what the room has shared, A to Z. Raise your hand on the ones you want to learn more about, and the people behind them will know to find you on December 9.</p>
+      <button class="btn primary" data-go="flow" style="justify-self:start">Share one and raise your hand, in two steps</button>
+      <div id="shareBox"></div>
+      <div class="filters" id="innFilters"></div>
+      <div id="innList" style="display:grid;gap:12px"></div>
+    </section>
+  </div>
+  <div id="vFlow" style="display:grid;gap:18px" hidden>
+    <div id="flowBody" style="display:grid;gap:14px"></div>
+    <div id="flowList" style="display:grid;gap:12px"></div>
+    <div id="flowFoot" class="btns"></div>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+const AREA_LIST=[
+ {id:'ec',name:'Early Childhood',short:'Early Childhood',lead:'Frances and Neal',blurb:'Infant and early childhood mental health, relational health, and the systems around families with young children.'},
+ {id:'k12',name:'K-12 Mental Health',short:'K-12',lead:'Anna and Sunny',blurb:'Student mental health in and around schools: access to care, school-based supports, and getting kids back to class.'},
+ {id:'dis',name:'Disability',short:'Disability',lead:'Allysa and Pamala',blurb:'Intellectual and developmental disabilities, and families navigating services, care, inclusion and the years ahead.'}
+];
+const AREAS={ec:'Early Childhood',k12:'K-12 Mental Health',dis:'Disability'};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clip=(s,n)=>String(s==null?'':s).trim().slice(0,n);
+const initials=n=>clip(n,60).split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'?';
+const plural=(n,one,many)=>n+' '+(n===1?one:many);
+function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>{t.hidden=true},2800)}
+
+/* the conference's clock is Eastern */
+const START=Date.UTC(2026,11,9,13,30);
+const daysLeft=Math.ceil((START-Date.now())/864e5);
+$('days').textContent=daysLeft>1?daysLeft+' days':daysLeft===1?'Tomorrow':daysLeft===0?'Today':'Dec 9, 2026';
+const dayOf=daysLeft<=0;
+
+/* state */
+let db=null,uid=null,ready=false,failed=false,editing=false,sharing=false,view='home',innFilter='all';
+let cards=new Map();      // uid -> that person's doc: card, answers, canGive, learn, shared
+let fellows=new Map();    // Thrive Fellows, kept by the owner
+let questions=new Map();  // the leads' key questions, kept by the owner
+const mine=()=>uid?cards.get(uid):null;
+const hasCard=()=>{const m=mine();return !!(m&&(areasOf(m).length||String(m.give||'').trim()||String(m.get||'').trim()))};
+const strs=a=>Array.isArray(a)?a.filter(x=>typeof x==='string'):[];
+const okAreas=a=>strs(a).filter(x=>x==='ec'||x==='k12'||x==='dis');
+const areasOf=c=>okAreas(c&&c.areas);
+const people=()=>[...cards.entries()].filter(([id,c])=>c&&c.name);
+const byName=(x,y)=>String(x[1].name).localeCompare(String(y[1].name));
+const inArea=(c,a)=>areasOf(c).includes(a);
+const safeLink=u=>{u=clip(u,300);return /^https:\/\/[^\s"'<>]+$/i.test(u)?u:''};
+const qsFor=a=>[...questions.entries()].filter(([id,q])=>q&&q.area===a&&q.text).sort((x,y)=>(x[1].order||0)-(y[1].order||0)).slice(0,2);
+
+let INN=[];
+function innovations(){
+  return INN.map(i=>{const c=i.by?cards.get(i.by):null;return {id:i.id,title:i.title,desc:i.desc,areas:okAreas(i.areas),link:i.link,fellow:!!i.fellow,by:i.by||null,byName:c?c.name:'',sid:i.id}})
+    .sort((a,b)=>String(a.title).localeCompare(String(b.title)));
+}
+function canWrite(){
+  if(db&&uid)return true;
+  toast(failed||ready?'Open this page from the link in your Thrive Together email.':'Still connecting. Try again in a moment.');return false;
+}
+function needCard(why){
+  if(hasCard())return true;
+  toast('Add your Give and Get first so people know who '+why+'.');
+  go('home');return false;
+}
+const SB='https://rsdsdnijnypgtleetiun.supabase.co';
+const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzZHNkbmlqbnlwZ3RsZWV0aXVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0MzM0MzQsImV4cCI6MjExMDAwOTQzNH0.0wtq34tp9owgEz_qggyxEopyMM2rAemR7C0WHsWpdl4';
+let TOKEN='';
+async function rpc(fn,args){
+  const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:KEY,Authorization:'Bearer '+KEY},body:JSON.stringify(Object.assign({p_token:TOKEN},args||{}))});
+  if(!r.ok)throw new Error('request failed '+r.status);
+  return r.json();
+}
+function applyRoom(room){
+  const next=new Map();
+  (room.people||[]).forEach(p=>next.set(p.id,{name:p.name,org:p.org,kind:p.kind,areas:p.areas||[],give:p.give,get:p.get,answers:{},canGive:[],learn:[],shared:[]}));
+  (room.answers||[]).forEach(a=>{const c=next.get(a.who);if(c)c.answers[a.q]=a.text});
+  (room.hands||[]).forEach(h=>{const c=next.get(h.who);if(c)c.learn.push(h.inn)});
+  (room.innovations||[]).forEach(i=>{const c=i.by?next.get(i.by):null;if(c)c.shared.push({id:i.id,title:i.title})});
+  uid=room.me;
+  const me=next.get(uid);if(me)me.canGive=(room.offers_from_me||[]).slice();
+  (room.offers_to_me||[]).forEach(id=>{const c=next.get(id);if(c)c.canGive=[uid]});
+  const qs=new Map();(room.questions||[]).forEach(q=>qs.set(q.id,{area:q.area,order:q.sort,text:q.text}));
+  cards=next;questions=qs;INN=room.innovations||[];
+}
+async function reload(){
+  const room=await rpc('tt_room');
+  if(!room)throw new Error('unknown link');
+  applyRoom(room);
+}
+/* Each handler describes what changed; this turns the change into the matching database calls. */
+async function saveMine(patch){
+  const m=mine()||{};
+  const calls=[];
+  if('name' in patch)calls.push(rpc('tt_save_card',{p_name:patch.name,p_org:patch.org,p_areas:patch.areas,p_give:patch.give,p_get:patch.get}));
+  if(patch.answers){const old=m.answers||{};Object.keys(patch.answers).forEach(q=>{if(patch.answers[q]!==old[q])calls.push(rpc('tt_answer',{p_question:q,p_body:patch.answers[q]}))})}
+  const diff=(a,b)=>a.filter(x=>!b.includes(x)).concat(b.filter(x=>!a.includes(x)));
+  if(patch.canGive)diff(strs(m.canGive),strs(patch.canGive)).forEach(id=>calls.push(rpc('tt_toggle_offer',{p_to:id})));
+  if(patch.learn)diff(strs(m.learn),strs(patch.learn)).forEach(id=>calls.push(rpc('tt_toggle_hand',{p_innovation:id})));
+  if(patch.shared){
+    const had=(m.shared||[]).map(x=>x.id),now=patch.shared.map(x=>x.id);
+    patch.shared.filter(x=>!had.includes(x.id)).forEach(x=>calls.push(rpc('tt_share',{p_title:x.title,p_descr:x.desc,p_areas:x.areas,p_link:x.link||''})));
+    had.filter(id=>!now.includes(id)).forEach(id=>calls.push(rpc('tt_unshare',{p_innovation:id})));
+  }
+  await Promise.all(calls);
+  await reload();
+  renderAll();
+}
+function go(v){view=v;sharing=false;if(v==='flow'){flowStep=1;flowAll=false}renderAll(true);window.scrollTo(0,0)}
+
+/* ---------- nav ---------- */
+function renderNav(){
+  const tabs=[['home','Home']].concat(AREA_LIST.map(a=>[a.id,a.short])).concat([['inn','Innovations']]);
+  $('nav').innerHTML=tabs.map(([k,l])=>'<button data-go="'+k+'"'+(view===k?' aria-current="page"':'')+'>'+l+'</button>').join('');
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(!b)return;const t=$(b.dataset.jump);if(t)t.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+
+/* ---------- shared pieces ---------- */
+function areaChips(as){return as.map(x=>'<span class="chip '+x+'">'+AREAS[x]+'</span>').join('')}
+function personHTML(id,c,opts){
+  opts=opts||{};
+  const as=areasOf(c),a=as.length===1?as[0]:'';
+  const offered=strs(mine()&&mine().canGive).includes(id);
+  const row=(k,v)=>v&&String(v).trim()?'<div><dt>'+k+'</dt><dd>'+esc(clip(v,200))+'</dd></div>':'';
+  let foot='';
+  if(opts.example)foot='';
+  else if(id===uid)foot=opts.own?'<div class="foot"><span class="small muted">This is how the room sees you.</span><button class="linkbtn" id="editCard">Edit</button></div>':'';
+  else if(c.get&&String(c.get).trim())foot='<div class="foot"><span class="small muted">'+(offered?'They can see that you offered.':'')+'</span><button class="wave" data-give="'+esc(id)+'" aria-pressed="'+offered+'">'+(offered?'You offered':'I can give that')+'</button></div>';
+  return '<article class="card person"><div class="head"><div class="avatar '+a+'" aria-hidden="true">'+esc(initials(c.name))+'</div>'+
+    '<div class="who"><b>'+esc(clip(c.name,60))+(id===uid&&!opts.own?' (you)':'')+'</b><span>'+esc(clip(c.org,80))+'</span></div></div>'+
+    '<div class="chips">'+areaChips(as)+(opts.example?'<span class="chip example">Example</span>':'')+'</div>'+
+    '<dl class="kv">'+row('Give',c.give)+row('Get',c.get)+'</dl>'+foot+'</article>';
+}
+let HM=new Map();
+function hands(){
+  const m=new Map();
+  people().forEach(([pid,c])=>new Set(strs(c.learn)).forEach(id=>{if(!m.has(id))m.set(id,[]);m.get(id).push([pid,c])}));
+  return m;
+}
+function handNames(id){
+  const hs=(HM.get(id)||[]).slice().sort(byName);
+  if(!hs.length)return '';
+  return hs.slice(0,6).map(([pid,c])=>esc(clip(c.name,40))+(pid===uid?' (you)':'')).join(', ')+(hs.length>6?' and '+(hs.length-6)+' more':'');
+}
+function innHTML(i){
+  const chips=(i.fellow?'<span class="chip fellow">Thrive Fellow · Fall 2026</span>':'<span class="chip">Shared by '+esc(clip(i.byName,60))+(i.by===uid?' (you)':'')+'</span>')+areaChips(i.areas);
+  const link=safeLink(i.link);
+  const on=strs(mine()&&mine().learn).includes(i.id);
+  const names=handNames(i.id);
+  return '<article class="card inn"><div class="chips">'+chips+'</div><h3>'+esc(clip(i.title,80))+'</h3>'+
+    (i.desc?'<p>'+esc(clip(i.desc,280))+'</p>':'')+
+    (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">'+esc(link.replace(/^https:\/\//,'').slice(0,60))+'</a>':'')+
+    (names?'<p class="small muted"><b>Hands raised:</b> '+names+'</p>':'')+
+    '<div class="foot"><span class="small muted">'+(i.by===uid?'<button class="linkbtn" data-unshare="'+esc(i.sid)+'">Remove</button>':'')+'</span>'+
+    (i.by===uid?'':'<button class="learn" data-learn="'+esc(i.id)+'" aria-pressed="'+on+'">'+(on?'Hand raised':'Raise my hand')+'</button>')+'</div></article>';
+}
+
+/* ---------- home ---------- */
+function formHTML(c){
+  c=c||{};
+  const cur=areasOf(c);
+  const opt=AREA_LIST.map(a=>'<label><input type="checkbox" id="fA-'+a.id+'" value="'+a.id+'"'+(cur.includes(a.id)?' checked':'')+'>'+a.name+'</label>').join('');
+  return '<form class="card" id="cardForm" novalidate>'+
+   '<label class="f" for="fName">Name<input id="fName" maxlength="60" autocomplete="name" value="'+esc(c.name)+'"></label>'+
+   '<label class="f" for="fOrg">Role and organization<input id="fOrg" maxlength="80" placeholder="Pediatrician, Lakeside Children’s Clinic" value="'+esc(c.org)+'"></label>'+
+   '<div class="f" style="display:grid;gap:6px;font-weight:700;font-size:.9rem">Your areas <span style="font-weight:400;color:var(--muted);font-size:.8rem">pick every one you work in</span><div class="checks">'+opt+'</div></div>'+
+   '<label class="f" for="fGive">Your Give <span>one thing you can offer the people in the room</span><textarea id="fGive" maxlength="200">'+esc(c.give)+'</textarea></label>'+
+   '<label class="f" for="fGet">Your Get <span>one thing you hope to walk out with</span><textarea id="fGet" maxlength="200">'+esc(c.get)+'</textarea></label>'+
+   '<p class="formerr" id="formErr" hidden></p>'+
+   '<div class="btns"><button class="btn primary" type="submit">Save my Give and Get</button>'+(hasCard()?'<button class="btn" type="button" id="cancelEdit">Cancel</button>':'')+'</div></form>';
+}
+let meSig='';
+function renderMe(force){
+  const m=mine(),has=hasCard();
+  const sig=[ready,failed,!!db,!!uid,editing,has?JSON.stringify([m.name,m.org,areasOf(m),m.give,m.get]):''].join('|');
+  if(!force&&sig===meSig)return; meSig=sig;
+  if(!ready&&!failed){$('me').innerHTML='<div class="empty">Connecting…</div>';return}
+  if(!db||!uid){$('me').innerHTML='<div class="empty">This page opens from your personal link. Use the button in your Thrive Together email, or write to kc1451@georgetown.edu if you can’t find it.</div>';return}
+  $('me').innerHTML=(has&&!editing)?personHTML(uid,m,{own:true}):formHTML(m);
+}
+$('me').addEventListener('click',e=>{
+  if(e.target.id==='editCard'){editing=true;renderMe()}
+  if(e.target.id==='cancelEdit'){editing=false;renderMe()}
+});
+$('me').addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!canWrite())return;
+  const v=(id,n)=>clip($(id).value,n);
+  const err=$('formErr'),fail=m=>{err.textContent=m;err.hidden=false};
+  const picked=AREA_LIST.filter(a=>$('fA-'+a.id).checked).map(a=>a.id);
+  if(!v('fName',60))return fail('Add your name so people can find you on Dec 9.');
+  if(!picked.length)return fail('Pick at least one area.');
+  if(!v('fGive',200)&&!v('fGet',200))return fail('Add a Give or a Get. Ideally both.');
+  const had=hasCard();
+  const patch={name:v('fName',60),org:v('fOrg',80),areas:picked,give:v('fGive',200),get:v('fGet',200),updated:Date.now()};
+  const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;
+  try{await saveMine(patch);editing=false;cards.set(uid,Object.assign({},mine()||{},patch));toast(had?'Saved':'You’re in the room');renderAll(true)}
+  catch(x){btn.disabled=false;fail('Could not save. Check your connection and try again.')}
+});
+function renderForYou(inn){
+  const sec=$('forYouSec');
+  if(!hasCard()){sec.hidden=true;return}
+  sec.hidden=false;
+  const m=mine();
+  const givers=people().filter(([id,c])=>id!==uid&&strs(c.canGive).includes(uid)).sort(byName);
+  const offered=people().filter(([id,c])=>strs(m.canGive).includes(id)).sort(byName);
+  const learn=inn.filter(i=>strs(m.learn).includes(i.id));
+  const who=([id,c],line)=>'<div class="listrow"><b>'+esc(clip(c.name,60))+' <span class="muted small" style="font-weight:400">'+esc(clip(c.org,80))+'</span></b><p>'+line+'</p></div>';
+  let h='<div class="card gg"><p class="eyebrow">For your Get</p>';
+  h+=givers.length?givers.map(p=>who(p,p[1].give?'<b>Their Give:</b> '+esc(clip(p[1].give,200)):'Said they can give what you’re hoping to get.')).join('')
+    :'<p class="small muted">When someone says they can give what you’re hoping to get, they show up here.</p>';
+  h+='</div><div class="card gg"><p class="eyebrow">For your Give</p>';
+  h+=offered.length?offered.map(p=>who(p,'<b>Their Get:</b> '+esc(clip(p[1].get,200)))).join('')
+    :'<p class="small muted">Browse an area and tap “I can give that” on someone’s Get. They will see it here on their page.</p>';
+  h+='</div>';
+  if(learn.length)h+='<div class="card gg"><p class="eyebrow">Your raised hands</p>'+learn.map(i=>'<div class="listrow"><b>'+esc(clip(i.title,80))+'</b>'+(i.fellow?'<p>Thrive Fellow. They can see your hand. Find them at the Fellow booths on Dec 9.</p>':'<p>Shared by '+esc(clip(i.byName,60))+'. They can see your hand.</p>')+'</div>').join('')+'</div>';
+  const mineShared=inn.filter(i=>i.by===uid);
+  if(mineShared.length)h+='<div class="card gg"><p class="eyebrow">What you shared</p>'+mineShared.map(i=>{const n=handNames(i.id);return '<div class="listrow"><b>'+esc(clip(i.title,80))+'</b><p>'+(n?'<b>Hands raised:</b> '+n:'No hands raised yet.')+'</p></div>'}).join('')+'</div>';
+  $('forYou').innerHTML=h;
+}
+function renderTiles(inn){
+  $('tiles').innerHTML=AREA_LIST.map(a=>{
+    const ppl=people().filter(([id,c])=>inArea(c,a.id)).length, n=inn.filter(i=>i.areas.includes(a.id)).length, q=qsFor(a.id).length;
+    const yours=hasCard()&&inArea(mine(),a.id);
+    return '<button class="tile '+a.id+'" data-go="'+a.id+'"><h3>'+a.name+(yours?' <span class="chip" style="vertical-align:middle">Yours</span>':'')+'</h3><p class="small">'+a.blurb+'</p>'+
+      '<div class="nums"><span>'+plural(ppl,'person','people')+'</span><span>'+plural(q,'key question','key questions')+'</span><span>'+plural(n,'innovation','innovations')+'</span></div>'+
+      '<p class="top">Led by '+a.lead+'</p></button>';
+  }).join('');
+}
+function renderHero(inn){
+  const ps=people(),gives=ps.filter(([id,c])=>c.give).length,gets=ps.filter(([id,c])=>c.get).length;
+  let ans=0;cards.forEach(c=>{if(c&&c.answers)ans+=Object.values(c.answers).filter(v=>typeof v==='string'&&v.trim()).length});
+  if(dayOf){$('heroH').textContent='Here’s what the room brought.';$('heroP').textContent='Check who can give what you’re hoping to get, read your area’s answers before the 10:30 breakout, and find the innovations you picked.'}
+  $('heroStats').textContent=ps.length?plural(gives,'Give','Gives')+' · '+plural(gets,'Get','Gets')+' · '+plural(ans,'answer','answers')+' · '+plural(inn.length,'innovation','innovations'):'';
+}
+
+/* ---------- area ---------- */
+let qSig='';
+function renderQuestions(force){
+  const a=AREA_LIST.find(x=>x.id===view);if(!a)return;
+  const qs=qsFor(a.id);
+  const sig=view+'|'+qs.map(q=>q[0]).join(',')+'|'+ready+'|'+failed;
+  $('qSub').textContent=qs.length?a.lead+' will use the answers to shape the 10:30 breakout.':'';
+  if(force||sig!==qSig){
+    qSig=sig;
+    $('questions').innerHTML=qs.length?qs.map(([qid,q])=>{
+      const my=(mine()&&mine().answers&&mine().answers[qid])||'';
+      return '<div class="qcard"><p class="qtext">'+esc(clip(q.text,300))+'</p><div class="answers" id="ans-'+esc(qid)+'"></div>'+
+        '<label class="f" for="qa-'+esc(qid)+'">Your answer <span>two sentences is plenty</span><textarea id="qa-'+esc(qid)+'" maxlength="280">'+esc(my)+'</textarea></label>'+
+        '<div class="btns"><button class="btn primary" data-ans="'+esc(qid)+'">'+(my?'Update my answer':'Add my answer')+'</button></div></div>';
+    }).join(''):'<div class="empty">'+(ready||failed?'The leads have not posted questions for this area yet.':'Loading questions…')+'</div>';
+  }
+  qs.forEach(([qid])=>{
+    const box=$('ans-'+qid);if(!box)return;
+    const rows=people().filter(([id,c])=>c.answers&&typeof c.answers[qid]==='string'&&c.answers[qid].trim()).sort(byName);
+    box.innerHTML=rows.length?'<p class="small muted">'+plural(rows.length,'answer','answers')+'</p>'+rows.map(([id,c])=>{
+      const outside=!inArea(c,a.id)&&areasOf(c).length;
+      return '<div class="answer">'+(outside?'<div class="chips" style="margin-bottom:4px">'+areasOf(c).map(x=>'<span class="chip '+x+'">From '+AREAS[x]+'</span>').join('')+'</div>':'')+
+        '<p>'+esc(clip(c.answers[qid],280))+'</p><span>'+esc(clip(c.name,60))+(id===uid?' (you)':'')+(c.org?' · '+esc(clip(c.org,80)):'')+'</span></div>';
+    }).join(''):'<p class="small muted">No answers yet. Yours can be the first.</p>';
+  });
+}
+document.addEventListener('click',async e=>{
+  const an=e.target.closest('button[data-ans]'),gv=e.target.closest('button[data-give]'),ln=e.target.closest('button[data-learn]'),un=e.target.closest('button[data-unshare]');
+  if(an){
+    if(!canWrite()||!needCard('answered'))return;
+    const qid=an.dataset.ans,text=clip($('qa-'+qid).value,280);
+    if(!text){toast('Write an answer first.');return}
+    const answers=Object.assign({},mine().answers||{});answers[qid]=text;
+    an.disabled=true;
+    try{await saveMine({answers,updated:Date.now()});an.textContent='Update my answer';toast('Answer saved')}catch(x){toast('Could not save. Try again.')}
+    an.disabled=false;
+  }else if(gv){
+    if(!canWrite()||!needCard('offered'))return;
+    const id=gv.dataset.give,cur=strs(mine().canGive);
+    const next=cur.includes(id)?cur.filter(x=>x!==id):cur.concat(id).slice(-200);
+    try{await saveMine({canGive:next});if(!cur.includes(id))toast('They’ll see your offer on their page')}catch(x){toast('Could not save. Try again.')}
+  }else if(ln){
+    if(!canWrite()||!needCard('raised a hand'))return;
+    const id=ln.dataset.learn,cur=strs(mine()&&mine().learn);
+    const next=cur.includes(id)?cur.filter(x=>x!==id):cur.concat(id).slice(-300);
+    ln.disabled=true;
+    try{await saveMine({learn:next})}catch(x){toast('Could not save. Try again.')}
+    ln.disabled=false;
+  }else if(un){
+    if(!canWrite()||!mine())return;
+    const next=(Array.isArray(mine().shared)?mine().shared:[]).filter(s=>s&&s.id!==un.dataset.unshare);
+    try{await saveMine({shared:next});toast('Removed')}catch(x){toast('Could not remove. Try again.')}
+  }
+});
+const EXAMPLE={name:'Maya Okafor',org:'Pediatrician, Lakeside Children’s Clinic',give:'A clinic willing to pilot something that fits a 15-minute visit.',get:'A way to hand a family off after a positive screen without losing them on the waitlist.'};
+function renderArea(inn){
+  const a=AREA_LIST.find(x=>x.id===view);if(!a)return;
+  const rows=people().filter(([id,c])=>inArea(c,a.id)).sort(byName);
+  const list=inn.filter(i=>i.areas.includes(a.id));
+  $('areaHead').innerHTML='<div class="areahead '+a.id+'"><p class="eyebrow">Led by '+a.lead+'</p><h2>'+a.name+'</h2><p>'+a.blurb+'</p><div class="btns" style="margin-top:4px"><button class="btn" data-jump="pSec">People</button><button class="btn" data-jump="iSec">Innovations</button></div></div>';
+  $('pH').textContent='People in '+a.short;
+  $('pCount').textContent=rows.length?'A to Z · '+rows.length:'';
+  $('people').innerHTML=rows.length?rows.map(([id,c])=>personHTML(id,c)).join('')
+    :(ready||failed?'<div class="empty">Nobody has added a Give and Get in '+a.name+' yet. Here is what one looks like.</div>'+personHTML('example',Object.assign({areas:[a.id]},EXAMPLE),{example:true}):'<div class="empty">Loading people…</div>');
+  $('aiH').textContent='Innovations in '+a.short;
+  $('areaInn').innerHTML=list.length?list.map(i=>innHTML(i)).join(''):'<div class="empty">No innovations in this area yet.</div>';
+}
+
+/* ---------- innovations ---------- */
+function renderInnPage(inn){
+  const opts=[['all','All']].concat(AREA_LIST.map(a=>[a.id,a.short]));
+  $('innFilters').innerHTML=opts.map(([k,l])=>'<button data-if="'+k+'" aria-pressed="'+(innFilter===k)+'">'+l+'</button>').join('');
+  const list=innFilter==='all'?inn:inn.filter(i=>i.areas.includes(innFilter));
+  $('innList').innerHTML=list.length?list.map(i=>innHTML(i)).join(''):'<div class="empty">'+(ready||failed?'Nothing here yet. Share the first one.':'Loading innovations…')+'</div>';
+}
+$('innFilters').addEventListener('click',e=>{const b=e.target.closest('button[data-if]');if(!b)return;innFilter=b.dataset.if;renderInnPage(innovations())});
+let shareSig='';
+function renderShare(force){
+  const sig=String(sharing);
+  if(!force&&sig===shareSig)return; shareSig=sig;
+  $('shareToggle').textContent=sharing?'Close':'Share an innovation';
+  if(!sharing){$('shareBox').innerHTML='';return}
+  const mineAreas=hasCard()?areasOf(mine()):[];
+  $('shareBox').innerHTML='<form class="card" id="shareForm" novalidate>'+
+    '<p class="muted small">A program, product or practice this room should see. It can be yours.</p>'+
+    '<label class="f" for="sTitle">Name<input id="sTitle" maxlength="80"></label>'+
+    '<label class="f" for="sDesc">What it does, in a sentence or two<textarea id="sDesc" maxlength="280"></textarea></label>'+
+    '<div class="f" style="display:grid;gap:6px;font-weight:700;font-size:.9rem">Which areas<div class="checks">'+
+      AREA_LIST.map(a=>'<label><input type="checkbox" id="sA-'+a.id+'" value="'+a.id+'"'+(mineAreas.includes(a.id)?' checked':'')+'>'+a.name+'</label>').join('')+'</div></div>'+
+    '<label class="f" for="sLink">Link <span>optional, starts with https://</span><input id="sLink" maxlength="300" inputmode="url" placeholder="https://"></label>'+
+    '<p class="formerr" id="shareErr" hidden></p>'+
+    '<div class="btns"><button class="btn primary" type="submit">Share it</button></div></form>';
+}
+$('shareToggle').addEventListener('click',()=>{
+  if(!sharing){if(!canWrite()||!needCard('shared it'))return}
+  sharing=!sharing;renderShare();
+});
+async function saveShare(p,errId,btn){
+  const err=$(errId),fail=m=>{err.textContent=m;err.hidden=false;return false};
+  const title=clip($(p+'Title').value,80),desc=clip($(p+'Desc').value,280),raw=clip($(p+'Link').value,300);
+  const areas=AREA_LIST.filter(a=>$(p+'A-'+a.id).checked).map(a=>a.id);
+  if(!title)return fail('Give it a name.');
+  if(!desc)return fail('Add a sentence on what it does.');
+  if(!areas.length)return fail('Pick at least one area.');
+  if(raw&&!safeLink(raw))return fail('The link needs to start with https:// and have no spaces.');
+  const cur=(Array.isArray(mine().shared)?mine().shared:[]);
+  if(cur.length>=5)return fail('You have shared five already. Remove one to add another.');
+  btn.disabled=true;
+  try{await saveMine({shared:cur.concat({id:Date.now().toString(36),title,desc,areas,link:raw}),updated:Date.now()});return true}
+  catch(x){btn.disabled=false;return fail('Could not share that. Check your connection and try again.')}
+}
+$('shareBox').addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!canWrite()||!needCard('shared it'))return;
+  if(await saveShare('s','shareErr',e.target.querySelector('button[type=submit]'))){sharing=false;renderShare();toast('Shared with the room')}
+});
+
+/* ---------- the two-step ask (where email 3 lands) ---------- */
+let flowStep=1,flowAll=false,flowSig='';
+function renderFlow(inn,force){
+  const has=hasCard(),m=mine();
+  const sig=[flowStep,has,ready,failed,!!db].join('|');
+  const body=$('flowBody'),list=$('flowList'),foot=$('flowFoot');
+  if(!ready&&!failed){body.innerHTML='<div class="empty">Connecting…</div>';list.innerHTML='';foot.innerHTML='';flowSig='';return}
+  if(!has){
+    body.innerHTML='<div class="hero"><h2>Innovation is a collective effort.</h2><p>Before you share an innovation or raise your hand, add your Give and Get so people know who you are.</p><div class="btns"><button class="btn primary" data-go="home">Add my Give and Get</button></div></div>';
+    list.innerHTML='';foot.innerHTML='';flowSig='';return;
+  }
+  const myAreas=areasOf(m);
+  const mineShared=inn.filter(i=>i.by===uid);
+  if(flowStep===1){
+    if(force||sig!==flowSig){
+      flowSig=sig;
+      body.innerHTML='<div class="hero"><p class="eyebrow">Step 1 of 2</p><h2>Share an innovation.</h2><p>Innovation in family health is a collective effort. What is a program, product or practice you are proud of, or one that inspires you? It can be yours or someone else’s.</p></div>'+
+        '<form class="card" id="flowForm" novalidate>'+
+        '<label class="f" for="gTitle">Name<input id="gTitle" maxlength="80"></label>'+
+        '<label class="f" for="gDesc">What it does, in a sentence or two<textarea id="gDesc" maxlength="280"></textarea></label>'+
+        '<div class="f" style="display:grid;gap:6px;font-weight:700;font-size:.9rem">Which areas<div class="checks">'+
+          AREA_LIST.map(a=>'<label><input type="checkbox" id="gA-'+a.id+'" value="'+a.id+'"'+(myAreas.includes(a.id)?' checked':'')+'>'+a.name+'</label>').join('')+'</div></div>'+
+        '<label class="f" for="gLink">Link <span>optional, starts with https://</span><input id="gLink" maxlength="300" inputmode="url" placeholder="https://"></label>'+
+        '<p class="formerr" id="flowErr" hidden></p>'+
+        '<div class="btns"><button class="btn primary" type="submit">Share and continue</button><button class="btn" type="button" data-flow="2">Skip for now</button></div></form>';
+    }
+    list.innerHTML=mineShared.length?'<p class="small muted">You have already shared: '+mineShared.map(i=>esc(clip(i.title,80))).join(', ')+'. Add another, or continue.</p>':'';
+    foot.innerHTML='';
+  }else if(flowStep===2){
+    const pool=inn.filter(i=>i.by!==uid);
+    const mineList=pool.filter(i=>i.areas.some(a=>myAreas.includes(a)));
+    const show=flowAll||!mineList.length?pool:mineList;
+    body.innerHTML='<div class="hero"><p class="eyebrow">Step 2 of 2</p><h2>Raise your hand.</h2><p>'+(flowAll||!mineList.length?'Here is every innovation in the room.':'Here are the innovations in your areas.')+' Raise your hand on any you would like to learn more about. The people behind them will see it and know to find you on December 9.</p></div>';
+    list.innerHTML=show.length?show.map(i=>innHTML(i)).join(''):'<div class="empty">No innovations yet.</div>';
+    foot.innerHTML=(!flowAll&&mineList.length&&mineList.length<pool.length?'<button class="btn" data-flow="all">Show all '+pool.length+'</button>':'')+'<button class="btn primary" data-flow="3">Done</button>';
+    flowSig='';
+  }else{
+    const raised=inn.filter(i=>strs(m.learn).includes(i.id));
+    body.innerHTML='<div class="hero"><h2>Thank you. That’s both.</h2><p>This is how the room builds together.</p></div>'+
+      '<div class="card gg"><p class="eyebrow">You shared</p>'+(mineShared.length?mineShared.map(i=>'<div class="listrow"><b>'+esc(clip(i.title,80))+'</b><p>People who raise a hand on it will show up on your home page.</p></div>').join('')
+        :'<p class="small">Nothing yet. It takes a minute, and it can be someone else’s work.</p><div class="btns"><button class="btn primary" data-flow="1">Share an innovation</button></div>')+'</div>'+
+      '<div class="card gg"><p class="eyebrow">Your raised hands</p>'+(raised.length?raised.map(i=>'<div class="listrow"><b>'+esc(clip(i.title,80))+'</b></div>').join('')
+        :'<p class="small">None yet.</p><div class="btns"><button class="btn primary" data-flow="2">Raise my hand on one</button></div>')+'</div>';
+    list.innerHTML='';
+    foot.innerHTML='<button class="btn" data-go="home">Back to home</button>';
+    flowSig='';
+  }
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-flow]');if(!b)return;
+  const v=b.dataset.flow;
+  if(v==='all')flowAll=true;else{flowStep=Number(v);flowAll=false}
+  renderAll(true);window.scrollTo(0,0);
+});
+$('flowBody').addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!canWrite()||!needCard('shared it'))return;
+  if(await saveShare('g','flowErr',e.target.querySelector('button[type=submit]'))){toast('Shared with the room');flowStep=2;renderAll(true);window.scrollTo(0,0)}
+});
+
+/* ---------- render ---------- */
+function renderAll(force){
+  const inn=innovations(),isArea=!!AREAS[view];HM=hands();
+  $('vHome').hidden=view!=='home';$('vArea').hidden=!isArea;$('vInn').hidden=view!=='inn';$('vFlow').hidden=view!=='flow';
+  renderNav();
+  if(view==='home'){renderHero(inn);renderMe(force);renderForYou(inn);renderTiles(inn)}
+  else if(isArea){renderArea(inn);renderQuestions(force)}
+  else if(view==='flow'){renderFlow(inn,force)}
+  else{renderShare(force);renderInnPage(inn)}
+}
+
+/* ---------- boot ---------- */
+const fromHash=()=>{if(location.hash==='#innovation-ask'){view='flow';flowStep=1;flowAll=false;return true}return false};
+fromHash();
+window.addEventListener('hashchange',()=>{if(fromHash())renderAll(true)});
+renderAll(true);
+(async function(){
+  let t='';
+  try{t=new URLSearchParams(location.search).get('t')||''}catch(x){}
+  try{if(t)localStorage.setItem('tt_token',t);else t=localStorage.getItem('tt_token')||''}catch(x){}
+  TOKEN=t;
+  if(!TOKEN){failed=true;renderAll(true);return}
+  try{await reload();db={};ready=true;failed=false}
+  catch(x){db=null;failed=true}
+  renderAll(true);
+  setInterval(async()=>{
+    if(document.hidden||!ready)return;
+    try{await reload();renderAll()}catch(x){}
+  },25000);
+})();
+})();
+</script>
+
+</body>
+</html>
