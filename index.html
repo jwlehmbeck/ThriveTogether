@@ -212,7 +212,7 @@ h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
   <div id="vHome" style="display:grid;gap:22px">
     <section class="hero" aria-labelledby="heroH">
       <h2 id="heroH">Find your people. Build together.</h2>
-      <p id="heroP">Early childhood, K-12 mental health and disability share a room on December 9. Start with one Give and one Get, then see what we can build together.</p>
+      <p id="heroP">Early childhood, K-12 mental health and disability come together as one Thrive community on December 9. Start with one Give and one Get, then see what we can build together.</p>
       <p class="small" id="heroStats" style="font-weight:700"></p>
     </section>
     <section aria-labelledby="meH">
@@ -249,7 +249,7 @@ h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
   <div id="vInn" style="display:grid;gap:18px" hidden>
     <section aria-labelledby="innH">
       <div class="subhead"><h2 id="innH">Innovations</h2><button class="linkbtn" id="shareToggle">Share an innovation</button></div>
-      <p class="muted small">This fall’s Thrive Fellows and what the room has shared, A to Z. Raise your hand on the ones you want to learn more about, and the people behind them will know to find you on December 9.</p>
+      <p class="muted small">This fall’s Thrive Fellows and what the Thrive community has shared, A to Z. Raise your hand on the ones you want to learn more about, and the people behind them will know to find you on December 9.</p>
       <button class="btn primary" data-go="flow" style="justify-self:start">Share one and raise your hand, in two steps</button>
       <div id="shareBox"></div>
       <div class="filters" id="innFilters"></div>
@@ -377,7 +377,7 @@ function personHTML(id,c,opts){
   const row=(k,v)=>v&&String(v).trim()?'<div><dt>'+k+'</dt><dd>'+esc(clip(v,200))+'</dd></div>':'';
   let foot='';
   if(opts.example)foot='';
-  else if(id===uid)foot=opts.own?'<div class="foot"><span class="small muted">This is how the room sees you.</span><button class="linkbtn" id="editCard">Edit</button></div>':'';
+  else if(id===uid)foot=opts.own?'<div class="foot"><span class="small muted">This is how the Thrive community sees you.</span><button class="linkbtn" id="editCard">Edit</button></div>':'';
   else if(c.get&&String(c.get).trim())foot='<div class="foot"><span class="small muted">'+(offered?'They can see that you offered.':'')+'</span><button class="wave" data-give="'+esc(id)+'" aria-pressed="'+offered+'">'+(offered?'You offered':'I can give that')+'</button></div>';
   return '<article class="card person"><div class="head"><div class="avatar '+a+'" aria-hidden="true">'+esc(initials(c.name))+'</div>'+
     '<div class="who"><b>'+esc(clip(c.name,60))+(id===uid&&!opts.own?' (you)':'')+'</b><span>'+esc(clip(c.org,80))+'</span></div></div>'+
@@ -417,7 +417,7 @@ function formHTML(c){
    '<label class="f" for="fName">Name<input id="fName" maxlength="60" autocomplete="name" value="'+esc(c.name)+'"></label>'+
    '<label class="f" for="fOrg">Role and organization<input id="fOrg" maxlength="80" placeholder="Pediatrician, Lakeside Children’s Clinic" value="'+esc(c.org)+'"></label>'+
    '<div class="f" style="display:grid;gap:6px;font-weight:700;font-size:.9rem">Your areas <span style="font-weight:400;color:var(--muted);font-size:.8rem">pick every one you work in</span><div class="checks">'+opt+'</div></div>'+
-   '<label class="f" for="fGive">Your Give <span>one thing you can offer the people in the room</span><textarea id="fGive" maxlength="200">'+esc(c.give)+'</textarea></label>'+
+   '<label class="f" for="fGive">Your Give <span>one thing you can offer the Thrive community</span><textarea id="fGive" maxlength="200">'+esc(c.give)+'</textarea></label>'+
    '<label class="f" for="fGet">Your Get <span>one thing you hope to walk out with</span><textarea id="fGet" maxlength="200">'+esc(c.get)+'</textarea></label>'+
    '<p class="formerr" id="formErr" hidden></p>'+
    '<div class="btns"><button class="btn primary" type="submit">Save my Give and Get</button>'+(hasCard()?'<button class="btn" type="button" id="cancelEdit">Cancel</button>':'')+'</div></form>';
@@ -447,7 +447,7 @@ $('me').addEventListener('submit',async e=>{
   const had=hasCard();
   const patch={name:v('fName',60),org:v('fOrg',80),areas:picked,give:v('fGive',200),get:v('fGet',200),updated:Date.now()};
   const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;
-  try{await saveMine(patch);editing=false;cards.set(uid,Object.assign({},mine()||{},patch));toast(had?'Saved':'You’re in the room');renderAll(true)}
+  try{await saveMine(patch);editing=false;cards.set(uid,Object.assign({},mine()||{},patch));toast(had?'Saved':'You’re part of the Thrive community');renderAll(true)}
   catch(x){btn.disabled=false;fail('Could not save. Check your connection and try again.')}
 });
 function renderForYou(inn){
@@ -483,7 +483,7 @@ function renderTiles(inn){
 function renderHero(inn){
   const ps=people(),gives=ps.filter(([id,c])=>c.give).length,gets=ps.filter(([id,c])=>c.get).length;
   let ans=0;cards.forEach(c=>{if(c&&c.answers)ans+=Object.values(c.answers).filter(v=>typeof v==='string'&&v.trim()).length});
-  if(dayOf){$('heroH').textContent='Here’s what the room brought.';$('heroP').textContent='Check who can give what you’re hoping to get, read your area’s answers before the 10:30 breakout, and find the innovations you picked.'}
+  if(dayOf){$('heroH').textContent='Here’s what the Thrive community brought.';$('heroP').textContent='Check who can give what you’re hoping to get, read your area’s answers before the 10:30 breakout, and find the innovations you picked.'}
   $('heroStats').textContent=ps.length?plural(gives,'Give','Gives')+' · '+plural(gets,'Get','Gets')+' · '+plural(ans,'answer','answers')+' · '+plural(inn.length,'innovation','innovations'):'';
 }
 
@@ -571,7 +571,7 @@ function renderShare(force){
   if(!sharing){$('shareBox').innerHTML='';return}
   const mineAreas=hasCard()?areasOf(mine()):[];
   $('shareBox').innerHTML='<form class="card" id="shareForm" novalidate>'+
-    '<p class="muted small">A program, product or practice this room should see. It can be yours.</p>'+
+    '<p class="muted small">A program, product or practice the Thrive community should see. It can be yours.</p>'+
     '<label class="f" for="sTitle">Name<input id="sTitle" maxlength="80"></label>'+
     '<label class="f" for="sDesc">What it does, in a sentence or two<textarea id="sDesc" maxlength="280"></textarea></label>'+
     '<div class="f" style="display:grid;gap:6px;font-weight:700;font-size:.9rem">Which areas<div class="checks">'+
@@ -601,7 +601,7 @@ async function saveShare(p,errId,btn){
 $('shareBox').addEventListener('submit',async e=>{
   e.preventDefault();
   if(!canWrite()||!needCard('shared it'))return;
-  if(await saveShare('s','shareErr',e.target.querySelector('button[type=submit]'))){sharing=false;renderShare();toast('Shared with the room')}
+  if(await saveShare('s','shareErr',e.target.querySelector('button[type=submit]'))){sharing=false;renderShare();toast('Shared with the Thrive community')}
 });
 
 /* ---------- the two-step ask (where email 3 lands) ---------- */
@@ -636,13 +636,13 @@ function renderFlow(inn,force){
     const pool=inn.filter(i=>i.by!==uid);
     const mineList=pool.filter(i=>i.areas.some(a=>myAreas.includes(a)));
     const show=flowAll||!mineList.length?pool:mineList;
-    body.innerHTML='<div class="hero"><p class="eyebrow">Step 2 of 2</p><h2>Raise your hand.</h2><p>'+(flowAll||!mineList.length?'Here is every innovation in the room.':'Here are the innovations in your areas.')+' Raise your hand on any you would like to learn more about. The people behind them will see it and know to find you on December 9.</p></div>';
+    body.innerHTML='<div class="hero"><p class="eyebrow">Step 2 of 2</p><h2>Raise your hand.</h2><p>'+(flowAll||!mineList.length?'Here is every innovation from the Thrive community.':'Here are the innovations in your areas.')+' Raise your hand on any you would like to learn more about. The people behind them will see it and know to find you on December 9.</p></div>';
     list.innerHTML=show.length?show.map(i=>innHTML(i)).join(''):'<div class="empty">No innovations yet.</div>';
     foot.innerHTML=(!flowAll&&mineList.length&&mineList.length<pool.length?'<button class="btn" data-flow="all">Show all '+pool.length+'</button>':'')+'<button class="btn primary" data-flow="3">Done</button>';
     flowSig='';
   }else{
     const raised=inn.filter(i=>strs(m.learn).includes(i.id));
-    body.innerHTML='<div class="hero"><h2>Thank you. That’s both.</h2><p>This is how the room builds together.</p></div>'+
+    body.innerHTML='<div class="hero"><h2>Thank you. That’s both.</h2><p>This is how the Thrive community builds together.</p></div>'+
       '<div class="card gg"><p class="eyebrow">You shared</p>'+(mineShared.length?mineShared.map(i=>'<div class="listrow"><b>'+esc(clip(i.title,80))+'</b><p>People who raise a hand on it will show up on your home page.</p></div>').join('')
         :'<p class="small">Nothing yet. It takes a minute, and it can be someone else’s work.</p><div class="btns"><button class="btn primary" data-flow="1">Share an innovation</button></div>')+'</div>'+
       '<div class="card gg"><p class="eyebrow">Your raised hands</p>'+(raised.length?raised.map(i=>'<div class="listrow"><b>'+esc(clip(i.title,80))+'</b></div>').join('')
@@ -661,7 +661,7 @@ document.addEventListener('click',e=>{
 $('flowBody').addEventListener('submit',async e=>{
   e.preventDefault();
   if(!canWrite()||!needCard('shared it'))return;
-  if(await saveShare('g','flowErr',e.target.querySelector('button[type=submit]'))){toast('Shared with the room');flowStep=2;renderAll(true);window.scrollTo(0,0)}
+  if(await saveShare('g','flowErr',e.target.querySelector('button[type=submit]'))){toast('Shared with the Thrive community');flowStep=2;renderAll(true);window.scrollTo(0,0)}
 });
 
 /* ---------- render ---------- */
