@@ -8,7 +8,7 @@
 <title>Thrive Together</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Libre+Caslon+Text:ital@1&display=swap">
 <style>
 /* Layout: one phone-width column, area tabs under the header. The three areas are the spine: each has its own page of innovations and people; Everyone is the lobby. Look carried over from Connect v1 to v3. */
 :root{
@@ -194,6 +194,62 @@ h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
 .btn,.wave,.learn,.chip,.filters button,.checks label,.days{border-radius:4px}
 .avatar{border-radius:50%}
 .logo{border-radius:4px}
+
+/* Thrive Website Style Guide v1.2 (Nov 2026): Georgetown Blue leads; teal, green and gold are accents.
+   Jost for headlines and labels, Libre Caslon Text Italic for taglines. Navy text on teal, green and gold; white or gold text on navy. */
+:root{
+  --navy:#041e42; --teal:#00b5e2; --green:#64a70b; --gold:#f8e08e; --navy50:#828ea0;
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f2f4f6; --fg:#041e42; --muted:#4f5f7b; --line:#cdd2d9;
+  --accent:#041e42; --accent-ink:#ffffff; --accent-soft:#e6e9ec;
+  --band:#041e42; --band-ink:#ffffff; --thread:#f8e08e;
+  --ec:#041e42; --ec-soft:#fdf6dd; --ec-full:#f8e08e;
+  --k12:#041e42; --k12-soft:#d9f4fb; --k12-full:#00b5e2;
+  --dis:#041e42; --dis-soft:#e8f2da; --dis-full:#64a70b;
+  --warn:#8a3b12;
+  --display:"Jost","Futura","Century Gothic","Avenir Next",system-ui,sans-serif;
+  --body:"Jost","Futura","Century Gothic","Avenir Next",system-ui,sans-serif;
+  --serif:"Libre Caslon Text","Adobe Caslon Pro",Georgia,serif;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#020f24; --surface:#041e42; --surface-2:#0b2a57; --fg:#ffffff; --muted:#b4bcc9; --line:#2c446b;
+  --accent:#f8e08e; --accent-ink:#041e42; --accent-soft:#0b2a57;
+  --band:#041e42; --band-ink:#ffffff;
+  --ec:#f8e08e; --ec-soft:#0b2a57; --k12:#00b5e2; --k12-soft:#0b2a57; --dis:#64a70b; --dis-soft:#0b2a57;
+  --warn:#f8e08e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#020f24; --surface:#041e42; --surface-2:#0b2a57; --fg:#ffffff; --muted:#b4bcc9; --line:#2c446b;
+  --accent:#f8e08e; --accent-ink:#041e42; --accent-soft:#0b2a57;
+  --band:#041e42; --band-ink:#ffffff;
+  --ec:#f8e08e; --ec-soft:#0b2a57; --k12:#00b5e2; --k12-soft:#0b2a57; --dis:#64a70b; --dis-soft:#0b2a57;
+  --warn:#f8e08e; color-scheme:dark}
+body{font-size:17px}
+header.top{border-bottom:3px solid var(--gold)}
+.brand h1{font-size:1.2rem;font-weight:700}
+.brand p{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:1;color:var(--gold)}
+.days{font-weight:600;font-size:.85rem;border-color:var(--gold);color:var(--gold)}
+.eyebrow,.kv dt{font-weight:600;letter-spacing:.12em}
+nav.areas button{font-weight:600}
+nav.areas button[aria-current="page"]{background:var(--gold);color:var(--navy)}
+.hero{background:var(--band);color:#ffffff;border:1px solid var(--band);padding:22px 18px}
+.hero h2{font-size:1.75rem;font-weight:700;color:#ffffff}
+.hero .eyebrow{color:var(--gold)}
+.hero p{color:#ffffff}
+#heroP,.areahead>p:not(.eyebrow){font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.45}
+.hero .btn{background:transparent;color:#ffffff;border-color:#ffffff}
+.hero .btn.primary{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.hero .linkbtn{color:var(--gold)}
+.hero :focus-visible{outline-color:var(--gold)}
+.btn,.wave,.learn,.filters button,.qtabs button,.linkbtn,.chip,.checks label{font-weight:600}
+.tile,.areahead{border-left:8px solid transparent}
+.tile.ec,.areahead.ec{border-left-color:var(--ec-full)}
+.tile.k12,.areahead.k12{border-left-color:var(--k12-full)}
+.tile.dis,.areahead.dis{border-left-color:var(--dis-full)}
+.rowbtn{border-left:6px solid transparent}
+.rowbtn.ec{border-left-color:var(--ec-full)} .rowbtn.k12{border-left-color:var(--k12-full)} .rowbtn.dis{border-left-color:var(--dis-full)}
+.chip.ec{background:var(--ec-full);color:var(--navy)} .chip.k12{background:var(--k12-full);color:var(--navy)} .chip.dis{background:var(--dis-full);color:var(--navy)}
+.avatar.ec{background:var(--ec-full);color:var(--navy)} .avatar.k12{background:var(--k12-full);color:var(--navy)} .avatar.dis{background:var(--dis-full);color:var(--navy)}
+.card,.qcard{border-color:var(--line)}
 </style>
 </head>
 <body>
@@ -201,7 +257,7 @@ h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
 
 <header class="top">
   <div class="wrap">
-    <div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="7" cy="8" r="3" fill="#041e42"/><circle cx="17" cy="8" r="3" fill="#041e42"/><circle cx="12" cy="16.5" r="3" fill="#041e42"/><path d="M7 8 L17 8 L12 16.5 Z" fill="none" stroke="#041e42" stroke-width="1.6"/></svg></div>
+    
     <div class="brand"><h1>Thrive Together</h1><p>Dec 9 · The Square, Washington DC</p></div>
     <span class="days" id="days"></span>
   </div>
@@ -211,6 +267,7 @@ h1,h2,h3,.qcard .qtext,.stat b,.days,.gg b{font-weight:700;letter-spacing:0}
 <main class="wrap">
   <div id="vHome" style="display:grid;gap:22px">
     <section class="hero" aria-labelledby="heroH">
+      <p class="eyebrow">December 9 · Washington, DC</p>
       <h2 id="heroH">Find your people. Build together.</h2>
       <p id="heroP">Early childhood, K-12 mental health and disability come together as one Thrive community on December 9. Start with one Give and one Get, then see what we can build together.</p>
       <p class="small" id="heroStats" style="font-weight:700"></p>
