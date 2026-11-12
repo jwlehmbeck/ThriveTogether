@@ -250,12 +250,24 @@ nav.areas button[aria-current="page"]{background:var(--gold);color:var(--navy)}
 .chip.ec{background:var(--ec-full);color:var(--navy)} .chip.k12{background:var(--k12-full);color:var(--navy)} .chip.dis{background:var(--dis-full);color:var(--navy)}
 .avatar.ec{background:var(--ec-full);color:var(--navy)} .avatar.k12{background:var(--k12-full);color:var(--navy)} .avatar.dis{background:var(--dis-full);color:var(--navy)}
 .card,.qcard{border-color:var(--line)}
+
+/* Official assets from the Thrive branding Box folder: GU | Thrive Center knockout lockup, cropped ripple, one threaded lead photo. */
+header.top .wrap.lockrow{padding-block:12px 0;display:block}
+.lockup{display:block;height:20px;width:auto}
+header.top .wrap.lockrow+.wrap{padding-block:8px 10px}
+.hero.lead{position:relative;overflow:hidden;padding:0 0 20px}
+.hero.lead>*{margin-inline:18px}
+.hero.lead .leadphoto{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;margin:0}
+.hero.lead .ripple{position:absolute;right:-48px;bottom:0;width:200px;height:auto;margin:0;pointer-events:none}
+.hero.lead .eyebrow{margin-top:6px}
+.hero.lead #heroStats{padding-right:140px}
 </style>
 </head>
 <body>
 
 
 <header class="top">
+  <div class="wrap lockrow"><img class="lockup" src="img/gu-thrive-center-knockout.png" alt="Georgetown University Thrive Center" width="640" height="103"></div>
   <div class="wrap">
     
     <div class="brand"><h1>Thrive Together</h1><p>Dec 9 · The Square, Washington DC</p></div>
@@ -266,7 +278,9 @@ nav.areas button[aria-current="page"]{background:var(--gold);color:var(--navy)}
 
 <main class="wrap">
   <div id="vHome" style="display:grid;gap:22px">
-    <section class="hero" aria-labelledby="heroH">
+    <section class="hero lead" aria-labelledby="heroH">
+      <img class="leadphoto" src="img/thrive-together-lead.jpg" alt="Multigenerational family laughing around an outdoor table" width="1600" height="898">
+      <img class="ripple" src="img/thrive-ripple-cropped.png" alt="" width="600" height="258">
       <p class="eyebrow">December 9 · Washington, DC</p>
       <h2 id="heroH">Find your people. Build together.</h2>
       <p id="heroP">Early childhood, K-12 mental health and disability come together as one Thrive community on December 9. Start with one Give and one Get, then see what we can build together.</p>
